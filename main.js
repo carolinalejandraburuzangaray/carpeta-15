@@ -109,32 +109,32 @@
 
 //////////////////////////////////////////////////////////////////////////////////////SERVIDOR
 const bd = [
-    { id: 1, nombre: "camisa", precio: 1000 },
-    { id: 2, nombre: "media", precio: 700 },
-    { id: 3, nombre: "zapato", precio: 800 },
-    { id: 4, nombre: "pantalon", precio: 1010 },
-  ];
-  
-  const pedirDatos = () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(bd);
-      }, 3000);
+  { id: 1, nombre: "camisa", precio: 1000 },
+  { id: 2, nombre: "media", precio: 700 },
+  { id: 3, nombre: "zapato", precio: 800 },
+  { id: 4, nombre: "pantalon", precio: 1010 },
+];
+
+const pedirDatos = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(bd);
+    }, 3000);
+  });
+};
+//////////////////////////////////////////////////////////////////////////////////////
+
+pedirDatos()
+  .then((response) => {
+    response.forEach((item) => {
+      let div = document.createElement("div");
+      div.innerHTML = `
+        <h2>ID: ${item.id}</h2>
+        <p>Nombre: ${item.nombre}</p>
+        <b>$${item.precio}</b>
+      `;
+
+      document.body.append(div);
     });
-  };
-  //////////////////////////////////////////////////////////////////////////////////////
-  
-  pedirDatos()
-    .then((response) => {
-      response.forEach((item) => {
-        let div = document.createElement("div");
-        div.innerHTML = `
-          <h2>ID: ${item.id}</h2>
-          <p>Nombre: ${item.nombre}</p>
-          <b>$${item.precio}</b>
-        `;
-  
-        document.body.append(div);
-      });
-    })
-    .catch((error) => {});
+  })
+  .catch((error) => {});
